@@ -1,11 +1,9 @@
 package Mode;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+@SuppressWarnings("ALL")
 @Entity
 @Table(name = "Patient")
 public class Patient {
@@ -24,8 +22,10 @@ public class Patient {
   private String phone;
     @Column(name = "sicknessDetails")
   private String sicknessDetails;
+    @ManyToOne
+    private ward ward;
 
-    public Patient(Long id, String f_name, String l_name, Long age, String gender, String phone, String sicknessDetails) {
+    public Patient(Long id, String f_name, String l_name, Long age, String gender, String phone, String sicknessDetails, Mode.ward ward) {
         this.id = id;
         this.f_name = f_name;
         this.l_name = l_name;
@@ -33,6 +33,7 @@ public class Patient {
         this.gender = gender;
         this.phone = phone;
         this.sicknessDetails = sicknessDetails;
+        this.ward = ward;
     }
 
     public Patient() {
@@ -95,6 +96,14 @@ public class Patient {
         this.sicknessDetails = sicknessDetails;
     }
 
+    public Mode.ward getWard() {
+        return ward;
+    }
+
+    public void setWard(Mode.ward ward) {
+        this.ward = ward;
+    }
+
     @Override
     public String toString() {
         return "Patient{" +
@@ -105,6 +114,7 @@ public class Patient {
                 ", gender='" + gender + '\'' +
                 ", phone='" + phone + '\'' +
                 ", sicknessDetails='" + sicknessDetails + '\'' +
+                ", ward=" + ward +
                 '}';
     }
 }

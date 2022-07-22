@@ -1,10 +1,9 @@
 package Mode;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
+@SuppressWarnings("ALL")
 @Entity
 @Table(name = "Doctor")
 public class Doctor {
@@ -24,7 +23,11 @@ public class Doctor {
     @Column(name = "specialty")
     private String specialty;
 
-    public Doctor(Long id, String f_name, String l_name, Long gender, String phone, String email, String specialty) {
+    @ManyToMany
+    @JoinColumn(name = "patient_Id")
+    private List<Patient> patient;
+
+    public Doctor(Long id, String f_name, String l_name, Long gender, String phone, String email, String specialty, List<Patient> patient) {
         this.id = id;
         this.f_name = f_name;
         this.l_name = l_name;
@@ -32,6 +35,7 @@ public class Doctor {
         this.phone = phone;
         this.email = email;
         this.specialty = specialty;
+        this.patient = patient;
     }
 
     public Doctor() {
@@ -94,6 +98,14 @@ public class Doctor {
         this.specialty = specialty;
     }
 
+    public List<Patient> getPatient() {
+        return patient;
+    }
+
+    public void setPatient(List<Patient> patient) {
+        this.patient = patient;
+    }
+
     @Override
     public String toString() {
         return "Doctor{" +
@@ -104,6 +116,7 @@ public class Doctor {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", specialty='" + specialty + '\'' +
+                ", patient=" + patient +
                 '}';
     }
 }
