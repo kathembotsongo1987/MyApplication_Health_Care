@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="test.sql" type="DatabaseScript" editBeforeRun="true" singleton="false">
+    <script-file value="$PROJECT_DIR$/src/main/resources/Database.sql" />
+    <script-mode>FILE</script-mode>
+    <method v="2" />
+  </configuration>
+</component>
